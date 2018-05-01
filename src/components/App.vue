@@ -6,10 +6,10 @@
 			<div class="navbar-brand has-text-centered-touch">
 			    
 			    <a class="navbar-item container is-hidden-desktop" href="/">
-			      	<b class="title" >Vue sheet graphs</b>		      	
+			      	<b class="title" >Padrón de femicidios</b>		      	
 			    </a>
 			    <a class="navbar-item is-hidden-touch" href="/">
-			      	<b class="title" >Vue sheet graphs</b>		      	
+			      	<b class="title" >Padrón de femicidios</b>		      	
 			    </a>
 
 			    <button class="button navbar-burger is-hidden">
@@ -54,43 +54,49 @@
 
 				<div class="columns is-multiline">
 
-					<chart title="Colores" 
-			    		   :chart-type="'doughnut'" 
-			    		   :data="getData('A')"
-			    		   :show-legend="true" 
-			    		   :show-percents="true"
-			    		   :total-rows="totalRows"			    		   
-			    		   :data-tresh-hold="false"		
-			    		   :fetching-data="fetchingData"				    		   
+					<chart title="Por edad" 
+			    		   :chart-type="'bar'" 
+			    		   :data="getData('B')" 		
+			    		   :fetching-data="fetchingData"
+			    		   :show-legend="false" 
+			    		   :show-percents="false"
+			    		   :data-tresh-hold="20"				    		   
 			    		   >	      		
+
+
 			      	</chart>
-					    
-			    	<chart title="Paises" 
+
+			      	<chart title="Por lugar" 
 			    		   :chart-type="'bar'" 
-			    		   :data="getData('B')"
+			    		   :data="getData('F')" 		
+			    		   :fetching-data="fetchingData"
 			    		   :show-legend="false" 
 			    		   :show-percents="false"
-			    		   :data-tresh-hold="false" 				    		   			    		   
-			    		   :fetching-data="fetchingData">	      		
+			    		   :data-tresh-hold="10"				    		   
+			    		   >
 			      	</chart>
-				    
-			    	<chart title="Vegetales" 
-			    		   :chart-type="'bar'" 
-			    		   :data="getData('C')"
-			    		   :show-legend="false" 
-			    		   :show-percents="false"
-			    		   :data-tresh-hold="false" 			    		   			    		   
-			    		   :fetching-data="fetchingData">	      		
-			      	</chart>
-				    
-			    	<chart title="Frutas" 
+
+			      	<chart title="Cómo" 
 			    		   :chart-type="'pie'" 
-			    		   :data="getData('D')"
+			    		   :data="getData('H')" 		
+			    		   :fetching-data="fetchingData"
 			    		   :show-legend="true" 
 			    		   :show-percents="true"
 			    		   :total-rows="totalRows"
-			    		   :data-tresh-hold="false" 					    		   
-			    		   :fetching-data="fetchingData">	      		
+			    		   :data-tresh-hold="10"				    		   
+			    		   >
+			      	</chart>
+
+			      	<chart title="Quién" 
+			    		   :chart-type="'pie'" 
+			    		   :data="getData('I')" 		
+			    		   :fetching-data="fetchingData"
+			    		   :show-legend="true" 
+			    		   :show-percents="true"
+			    		   :total-rows="totalRows"
+			    		   :data-tresh-hold="10"				    		   
+			    		   >	      		
+
 			      	</chart>
 				  			  
 				</div>
@@ -100,6 +106,10 @@
 				  <div class="modal-background"></div>
 				  <div class="modal-card">
 				    <header class="modal-card-head">
+				      <p class="modal-card-title">
+				      	Padrón de femicidios<br/>
+				      	<span class="has-text-primary" >Nuestra base de datos (1974-2017)</span>
+				      </p>
 				      <button @click="showModal = false" class="modal-close is-large" aria-label="close"></button>
 				    </header>
 				    <section class="modal-card-body">
@@ -118,11 +128,14 @@
 		      
 		      <p>
 		        <strong>
-		        	Desarrollado con
-		        	<fa-icon iconName="heart" ></fa-icon>
+		        	Desarrollado
 		        </strong> por
 		        <a target="_blank" href="http://nan-apps.com">
 		          nan-apps
+		        </a>
+		        <strong>para </strong> 
+		        <a target="_blank" href="http://lavaca.org">
+		          lavaca.org
 		        </a>
 		      </p>
 
