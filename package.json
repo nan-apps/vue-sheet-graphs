@@ -1,8 +1,8 @@
 {
-  "name": "niunamenosdata-graficos",
+  "name": "vue-sheet-graphs",
   "version": "1.0.0",
-  "description": "Graficos estadisticos sobre el padron de femicidios",
-  "author": "lavaca.org",
+  "description": "Graficos a partir de un sheet en google drive",
+  "author": "nan-apps.com",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -59,7 +59,8 @@
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "hoek": "~> 4.2.1"
   },
   "engines": {
     "node": ">= 6.0.0",
