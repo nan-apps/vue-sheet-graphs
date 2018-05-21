@@ -92,6 +92,23 @@
 			    		   :data-tresh-hold="false" 					    		   
 			    		   :fetching-data="fetchingData">	      		
 			      	</chart>
+
+			      	<!-- Rangos: cuando la categoria es numerica -->
+			      	<!--<chart title="Por Edad" 
+			    		   :chart-type="'bar'" 
+			    		   :data="getData('G')"
+			    		   :fetching-data="fetchingData"
+			    		   :show-legend="false" 
+			    		   :show-percents="false"
+			    		   :data-tresh-hold="1"
+			    		   :group-ranges="[
+			    		   		[0,15],
+			    		   		[16,50],
+			    		   		[51,100],
+			    		   		[100,Infinity]
+			    		   ]"
+			    		   >
+			      	</chart>-->
 				  			  
 				</div>
 
