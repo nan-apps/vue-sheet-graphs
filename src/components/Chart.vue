@@ -74,7 +74,8 @@
 			}
 		},   		
 		props: ['chartType', 'data', 'title', 'fetchingData', 
-			    'showLegend', 'dataTreshHold', 'showPercents', 'totalRows'],
+			    'showLegend', 'dataTreshHold', 'showPercents', 'totalRows', 
+			    'groupRanges'],
 		components: {
 			FaIcon
 		},
@@ -85,7 +86,7 @@
 			data: function ( newData ) {	
 
 				if( newData ){		    				    		
-					let defaultConf = jQuery.extend(true, {}, ChartDefaultConf); 		    		
+					let defaultConf = jQuery.extend(true, {}, ChartDefaultConf);
 					this.draw( 
 						this.ctx, 
 						this.buildConf(defaultConf, this.chartType, newData)
@@ -106,11 +107,21 @@
 			},
 			buildConf: function( chartConf, chartType, data ){
 
-				var self = this;				
+				let self = this;				
 				chartConf.type = chartType;
 				
-				let groupedData = _.groupBy(data.values);					
-				_.forEach(groupedData, function(values, label) {	
+				let groupedData = _.groupBy(data.values);
+
+				console.log(groupedData);
+								
+				if( this.groupRanges ){
+					groupedData = this.groupByRanges( groupedData, this.groupRanges );
+				}
+
+				console.log(groupedData);
+
+				_.forEach(groupedData, function(values, label) {
+
 					if( !self.dataTreshHold || values.length > self.dataTreshHold ){
 						chartConf.data.labels.push( label );					
 						chartConf.data.datasets[0].data.push( values.length );
@@ -137,7 +148,31 @@
 				let defaultConf = jQuery.extend(true, {}, ChartDefaultConf); 		    		
 				this.draw( this.ctx, 
 						   this.buildConf(defaultConf, type, this.data) );
+			},
+			groupByRanges: function(data, ranges){
+				let self = this;
+				let groupedData = {};
+				_.forEach(ranges, function(values) {
+					let from = values[0];
+					let to = values[1];
+					let groupName = self.getGroupName(from, to);
+					groupedData[groupName] = [];
+					_.forEach(data, function(values) {
+						if(values[0] > from && values[0] < to ){
+							groupedData[groupName] = groupedData[groupName].concat(values);
+						}
+					});
+				});
+				return groupedData;
+			},
+			getGroupName: (from ,to) => {
+				if(to == Infinity){
+					return "mas de "+from;
+				} else {
+					return from+" a "+to;
+				}
 			}
+
 
 		}, 
 			    

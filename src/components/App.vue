@@ -6,10 +6,10 @@
 			<div class="navbar-brand has-text-centered-touch">
 			    
 			    <a class="navbar-item container is-hidden-desktop" href="/">
-			      	<b class="title" >Padrón de femicidios</b>		      	
+			      	<b class="title" >Empresas recuperadas</b>		      	
 			    </a>
 			    <a class="navbar-item is-hidden-touch" href="/">
-			      	<b class="title" >Padrón de femicidios</b>		      	
+			      	<b class="title" >Empresas recuperadas</b>		      	
 			    </a>
 
 			    <button class="button navbar-burger is-hidden">
@@ -54,50 +54,56 @@
 
 				<div class="columns is-multiline">
 
-					<chart title="Por edad" 
+				 	<chart title="Por año" 
 			    		   :chart-type="'bar'" 
-			    		   :data="getData('B')" 		
+			    		   :data="getData('C')" 		
 			    		   :fetching-data="fetchingData"
 			    		   :show-legend="false" 
 			    		   :show-percents="false"
-			    		   :data-tresh-hold="20"				    		   
+			    		   :total-rows="totalRows"
+			    		   :data-tresh-hold="1"				    		   
 			    		   >	      		
 
 
 			      	</chart>
 
-			      	<chart title="Por lugar" 
-			    		   :chart-type="'bar'" 
+			      	<chart title="Por rubro" 
+			    		   :chart-type="'pie'" 
 			    		   :data="getData('F')" 		
 			    		   :fetching-data="fetchingData"
+			    		   :show-legend="true" 
+			    		   :show-percents="true"
+			    		   :total-rows="totalRows"
+			    		   :data-tresh-hold="10"				    		   
+			    		   >
+			      	</chart> 
+
+			      	<chart title="Por cantidad de trabajadores" 
+			    		   :chart-type="'bar'" 
+			    		   :data="getData('G')"
+			    		   :fetching-data="fetchingData"
 			    		   :show-legend="false" 
 			    		   :show-percents="false"
-			    		   :data-tresh-hold="10"				    		   
+			    		   :data-tresh-hold="1"
+			    		   :group-ranges="[
+			    		   		[0,15],
+			    		   		[16,50],
+			    		   		[51,100],
+			    		   		[100,Infinity]
+			    		   ]"
 			    		   >
 			      	</chart>
-
-			      	<chart title="Cómo" 
+ 
+			      	<chart title="Por lugar" 
 			    		   :chart-type="'pie'" 
-			    		   :data="getData('H')" 		
+			    		   :data="getData('D')" 		
 			    		   :fetching-data="fetchingData"
 			    		   :show-legend="true" 
 			    		   :show-percents="true"
 			    		   :total-rows="totalRows"
-			    		   :data-tresh-hold="10"				    		   
+			    		   :data-tresh-hold="1"
 			    		   >
-			      	</chart>
-
-			      	<chart title="Quién" 
-			    		   :chart-type="'pie'" 
-			    		   :data="getData('I')" 		
-			    		   :fetching-data="fetchingData"
-			    		   :show-legend="true" 
-			    		   :show-percents="true"
-			    		   :total-rows="totalRows"
-			    		   :data-tresh-hold="10"				    		   
-			    		   >	      		
-
-			      	</chart>
+			      	</chart> 
 				  			  
 				</div>
 
@@ -107,8 +113,8 @@
 				  <div class="modal-card">
 				    <header class="modal-card-head">
 				      <p class="modal-card-title">
-				      	Padrón de femicidios<br/>
-				      	<span class="has-text-primary" >Nuestra base de datos (1974-2017)</span>
+				      	Empresas Recuperadas<br/>
+				      	<span class="has-text-primary" >Nuestra base de datos</span>
 				      </p>
 				      <button @click="showModal = false" class="modal-close is-large" aria-label="close"></button>
 				    </header>
@@ -164,7 +170,7 @@
 		},    	    
 		methods:{
 			getData: function( column ){
-				return _.find(this.parsedData, function(d) { return d.column == column; });				
+				return _.find(this.parsedData, function(d) { return d.column == column; });
 			}   
 		}
 	}
