@@ -168,6 +168,8 @@
 			getGroupName: (from ,to) => {
 				if(to == Infinity){
 					return "mas de "+from;
+				}else if( from==0 ){
+					return "Hasta "+to;
 				} else {
 					return from+" a "+to;
 				}
